@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from api_yamdb.users.models import User
+
+from users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,7 +27,7 @@ class TokenSerializer(serializers.ModelSerializer):
 
 class SignUpSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
-    email = serializers.EmailField()
+    email = serializers.EmailField(max_length=150)
 
     def validate(self, validated_data):
         if validated_data == 'me':
